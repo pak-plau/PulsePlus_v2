@@ -1,0 +1,3 @@
+pakL -- 2020-04-21 9:58
+    - Create starting files and folders
+    - Add to .gitignore and have it ignore changes to txt files containing keys

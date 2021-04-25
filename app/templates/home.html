@@ -160,27 +160,61 @@
     <div class="browse_movies">
         <h1> Browse Movies </h1>
         <p>Genre</p>
+        <p style="color:red">{{ error }}</p>
         <a id="movies">
-            <form action="">
-                <input type="checkbox" id="genre1" name="genre1" value="Adventure">
-                <label for="genre1"> Adventure </label><br>
-                <input type="checkbox" id="genre2" name="genre2" value="Action">
+            <form action="/get_movies" method="post">
+                <input type="checkbox" id="genre1" name="genre" value="28">
                 <label for="genre2"> Action </label><br>
-                <input type="checkbox" id="genre3" name="genre3" value="Horror">
-                <label for="genre3"> Horror </label><br>
-                <input type="checkbox" id="genre4" name="genre4" value="Romance">
-                <label for="genre4"> Romance </label><br>
-                <input type="checkbox" id="genre5" name="genre5" value="Sci-Fi">
-                <label for="genre5"> Sci-Fi </label><br>
-                <input type="checkbox" id="genre6" name="genre6" value="Documentary">
+                <input type="checkbox" id="genre2" name="genre" value="12">
+                <label for="genre1"> Adventure </label><br>
+                <input type="checkbox" id="genre3" name="genre" value="16">
+                <label for="genre1"> Animation </label><br>
+                <input type="checkbox" id="genre4" name="genre" value="35">
+                <label for="genre1"> Comedy </label><br>
+                <input type="checkbox" id="genre5" name="genre" value="80">
+                <label for="genre1"> Crime </label><br>
+                <input type="checkbox" id="genre6" name="genre" value="99">
                 <label for="genre6"> Documentary </label><br>
-                <input type="checkbox" id="genre7" name="genre7" value="Cartoon">
-                <label for="genre3"> Cartoon </label><br>
+                <input type="checkbox" id="genre7" name="genre" value="18">
+                <label for="genre6"> Drama </label><br>
+                <input type="checkbox" id="genre8" name="genre" value="10751">
+                <label for="genre6"> Family </label><br>
+                <input type="checkbox" id="genre9" name="genre" value="14">
+                <label for="genre6"> Fantasy </label><br>
+                <input type="checkbox" id="genre10" name="genre" value="36">
+                <label for="genre6"> History </label><br>
+                <input type="checkbox" id="genre11" name="genre" value="27">
+                <label for="genre3"> Horror </label><br>
+                <input type="checkbox" id="genre12" name="genre" value="10402">
+                <label for="genre4"> Music </label><br>
+                <input type="checkbox" id="genre13" name="genre" value="9648">
+                <label for="genre4"> Mystery </label><br>
+                <input type="checkbox" id="genre14" name="genre" value="10749">
+                <label for="genre4"> Romance </label><br>
+                <input type="checkbox" id="genre15" name="genre" value="878">
+                <label for="genre5"> Science Fiction </label><br>
+                <input type="checkbox" id="genre16" name="genre" value="10770">
+                <label for="genre4"> TV Movie </label><br>
+                <input type="checkbox" id="genre17" name="genre" value="53">
+                <label for="genre4"> Thriller </label><br>
+                <input type="checkbox" id="genre18" name="genre" value="10752">
+                <label for="genre4"> War </label><br>
+                <input type="checkbox" id="genre19" name="genre" value="37">
+                <label for="genre4"> Western </label><br>
                 <br>
                 <input type="submit" value="Submit">
             </form>
     </div>
     </a>
+    <br>
+    {% for item in movies.results %}
+        <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}" style="width:10%">
+        {{ item.original_title }}
+        <br>
+        {{ item.overview }}
+        <br>
+        <br>
+    {% endfor %}
 </body>
 
 </html>

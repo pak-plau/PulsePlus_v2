@@ -1,3 +1,6 @@
-app/keys/key_api0.txt
-app/keys/key_api1.txt
-app/keys/key_api2.txt
+app/keys/tmdb.txt
+app/keys/nyt.txt
+app/keys/studioghibli.txt
+app/keys/yelp.txt
+app/keys/edamam.txt
+app/keys/geocoder.txt

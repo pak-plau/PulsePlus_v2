@@ -6,16 +6,19 @@ pakL -- 2021-04-22 8:34
     - Add design doc
 
 victoriaG -- 2021-04-24 21:38
-    - Created home.html (home page of our website): added a navigation bar with links directing users to a specific section of 
-    the page, image and text organized in three columns, animated arrow directing user to scroll down, and HTML form with 
+    - Created home.html (home page of our website): added a navigation bar with links directing users to a specific section of
+    the page, image and text organized in three columns, animated arrow directing user to scroll down, and HTML form with
     checkboxes for movie genres.
     - Created main.css: organized and added styles to elements in home.html
     - Uploaded images to static folder
     - Updated __init__.py to render home.html
 
-pakL -- 2021-04-22 6:15
+pakL -- 2021-04-22 06:15
     - Change .gitignore to ignore renamed keys files
     - Add to home.html to include listing of films
     - Add to __init__.py to render home.html after checkbox are submitted
         - If checkbox is empty, return and error message
         - if checkbox is full, return films from TMDB API under those genres
+
+reneeM -- 2021-04-22 07:04
+    - Add restaurants.py which has methods for getting info on a random restaurant based on given filters

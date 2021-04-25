@@ -4,7 +4,7 @@ import random
 
 yelp_key = open("keys/key_api0.txt", "r").read()
 
-def getRestaurant(cuisine, location):
+def getRestaurant(cuisine, zip):
     # contains api key for authorizing request
     headers = {
         'Authorization': ('Bearer ' + yelp_key).replace('\n', '')
@@ -13,16 +13,16 @@ def getRestaurant(cuisine, location):
     # contains filters for choosing restaurant
     url_params = {
         'term': cuisine.replace(' ', '+'),
-        'location': location.replace(' ', '+'),
+        'location': zip.replace(' ', '+'),
         'limit': 1, # ensures that response only returns one restaurant
-        'offset': random.randint(0, 999) # randomizes the restaurant returned
+        'offset': random.randint(0, 9) # randomizes the restaurant returned
     }
 
     # gets random restaurant from Yelp Fusion API based on filters
-    response = requests.get('https://api.yelp.com/v3/businesses/search', headers=headers, params=url_params)
+    response = requests.get('https://api.yelp.com/v3/businesses/search', headers=headers, params=url_params).json()
 
     # gets Yelp id of the restaurant
-    id = response.json()['businesses'][0]['id']
+    id = response['businesses'][0]['id']
 
     # gets detailed info about restaurant from Yelp API
     restaurant = requests.get('https://api.yelp.com/v3/businesses/' + id, headers=headers).json()

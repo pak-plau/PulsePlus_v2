@@ -2,21 +2,16 @@ import json
 import requests
 import random
 
-edamam_key = open("keys/edamam.txt", "r").read()
+edamam_id = open("keys/edamamid.txt", "r").read()
+edamam_key = open("keys/edamamkey.txt", "r").read()
 
 def getRecipe(query):
-    # contains api key for authorizing request
-    headers = {
-        'Authorization': ('Bearer ' + edamam_key).replace('\n', '')
-    }
 
-    # contains filter for narrowing recipes
-    url_params = {
-        'q': query.replace(' ', '+')
-    }
+    # stores adds query, API id, and API key into search url
+    search = "https://api.edamam.com/search?q=" + query + "&app_id=$" + edamam_id + "&app_key=$" + edamam_key
 
     # gets recipes based on filter
-    response = requests.get('https://api.edamam.com/search', headers=headers, params=url_params).json()
+    response = requests.get(search).json()
 
     # generates a random number based on number of recipe results
     rand = random.randint(0, response['count'])

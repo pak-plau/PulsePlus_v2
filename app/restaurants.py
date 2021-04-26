@@ -14,15 +14,19 @@ def getRestaurant(cuisine, zip):
     url_params = {
         'term': cuisine.replace(' ', '+'),
         'location': zip.replace(' ', '+'),
-        'limit': 1, # ensures that response only returns one restaurant
-        'offset': random.randint(0, 9) # randomizes the restaurant returned
     }
 
-    # gets random restaurant from Yelp Fusion API based on filters
+    # gets list of restaurants from Yelp Fusion API based on filters
     response = requests.get('https://api.yelp.com/v3/businesses/search', headers=headers, params=url_params).json()
+    businesses = response['businesses']
 
-    # gets Yelp id of the restaurant
-    id = response['businesses'][0]['id']
+    # returns None if no businesses have been found
+    if (not businesses):
+        return None
+
+    # gets Yelp id of a random restaurant
+    rand = random.randint(0, len(businesses))
+    id = response['businesses'][rand]['id']
 
     # gets detailed info about restaurant from Yelp API
     restaurant = requests.get('https://api.yelp.com/v3/businesses/' + id, headers=headers).json()

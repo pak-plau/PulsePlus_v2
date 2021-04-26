@@ -25,3 +25,4 @@ victoriaG -- 2021-04-24 21:38
 
 ryanM -- 2021-04-25 22:38
     - Add recipes.py which has method for getting info on a random recipe based on a given query
+    - Update recipes.py to use the required API id

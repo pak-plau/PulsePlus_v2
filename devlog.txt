@@ -1,8 +1,18 @@
-pakL -- 2021-04-21 9:58
+pakL -- 2021-04-21 09:58
     - Create starting files and folders
     - Add to .gitignore and have it ignore changes to txt files containing keys
 
-pakL -- 2021-04-22 8:34
+pakL -- 2021-04-22 18:15
+    - Change .gitignore to ignore renamed keys files
+    - Add to home.html to include listing of films
+    - Add to __init__.py to render home.html after checkbox are submitted
+        - If checkbox is empty, return and error message
+        - if checkbox is full, return films from TMDB API under those genres
+
+reneeM -- 2021-04-22 19:04
+    - Add restaurants.py which has methods for getting info on a random restaurant based on given filters
+
+pakL -- 2021-04-22 20:34
     - Add design doc
 
 victoriaG -- 2021-04-24 21:38
@@ -13,12 +23,5 @@ victoriaG -- 2021-04-24 21:38
     - Uploaded images to static folder
     - Updated __init__.py to render home.html
 
-pakL -- 2021-04-22 06:15
-    - Change .gitignore to ignore renamed keys files
-    - Add to home.html to include listing of films
-    - Add to __init__.py to render home.html after checkbox are submitted
-        - If checkbox is empty, return and error message
-        - if checkbox is full, return films from TMDB API under those genres
-
-reneeM -- 2021-04-22 07:04
-    - Add restaurants.py which has methods for getting info on a random restaurant based on given filters
+ryanM -- 2021-04-25 22:38
+    - Add recipes.py which has method for getting info on a random recipe based on a given query

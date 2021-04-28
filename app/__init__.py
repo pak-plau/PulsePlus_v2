@@ -31,7 +31,6 @@ def find_title():
     if not title:
         return render_template("home.html", error_title="Enter at least one character", movies="")
     temp = title_link+title
-    print(temp)
     return render_template("home.html", movies=json.loads(urllib.request.urlopen(temp).read()))
 
 if(__name__ == "__main__"):

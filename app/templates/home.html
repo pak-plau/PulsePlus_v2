@@ -6,6 +6,7 @@
     <title>PulsePlus v2 Home</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         * {
             box-sizing: border-box;
@@ -25,8 +26,31 @@
             padding: 0px;
         }
 
+        .column2 {
+            float: left;
+            width: 30%;
+            padding: 0px;
+        }
+
+        .column3 {
+            float: left;
+            width: 70%;
+            padding: 0px;
+        }
+
+        .column2 img {
+            width: 150px;
+            height: 200px;
+            margin-left: 45%;
+        }
+        .row2 {
+            border-top: 2px solid gray;
+            padding-top: 10px;
+            margin-bottom: 10px;
+        }
+
         /* Clear floats after the columns */
-        .row:after {
+        .row:after, .row2:after {
             content: "";
             display: table;
             clear: both;
@@ -35,7 +59,7 @@
         .topnav {
             position: relative;
             background-color: white;
-            padding-right: 2%
+            padding-right: 2%;
         }
 
         .topnav a {
@@ -123,7 +147,93 @@
                 }
             }
         }
+
+        .search_bar input[type=text] {
+            border: 2px solid black;
+            border-right: none;
+            border-radius: 15px 0px 0px 15px; 
+            height: 40px;
+            outline: none;
+            background-color: white;
+            width: 70%;
+            padding-left: 10px;
+            font-size: 16px;
+            margin-left: 12.5%;
+        }
+
+        .search_bar button {  
+            position: absolute;   
+            border-radius: 0px 15px 15px 0px;  
+            background-image: linear-gradient(to right, #7474BF 0%, #348AC7 51%, #7474BF 100%); 
+            color: white;
+            border: none;
+            cursor: pointer;
+            height: 40px;
+            width: 5%;
+            border: 2px solid black;
+            border-left: none;
+        }
+
+        .collapsible {
+            background-color: white;
+            color: rgb(15, 15, 99);
+            font-weight: bold;
+            font-size: 25px;
+            padding: 5px;
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+        }
+
+        .active, .collapsible:hover {
+            background-color: white;
+        }
+
+        .content {
+            /* padding: top right bottom left */
+            padding: 20px 0px 20px 0px; 
+            display: none;
+            overflow: hidden;
+        }
+
+        .movie-section {
+            border: 6px solid rgb(209, 128, 128);
+            background-color:rgb(243, 240, 240);
+            max-width: 33.33%;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        p {
+            font-size: 18px;
+            color:darkblue;
+            margin: 0px 0px 0px 12.5%;
+        }
+
+        .genre-checkbox {
+            margin-left: 12.5%;
+        }
+
+        #movie-submit {
+            background-color: #7f5a83;
+            background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 36px;
+            cursor: pointer;
+        }
+
+        .synopsis {
+            color: black;
+            font-size: 16px;
+        }
     </style>
+
 </head>
 
 <body>
@@ -156,65 +266,127 @@
             <img src="static/dinner.jpg" />
         </div>
     </div>
-
-    <div class="browse_movies">
-        <h1> Browse Movies </h1>
-        <p>Genre</p>
-        <p style="color:red">{{ error }}</p>
-        <a id="movies">
-            <form action="/get_movies" method="post">
+    <a id="movies">
+    <h1> Browse Movies </h1>
+    </a>
+    <div class="movie-section">
+        <button type="button" class="collapsible">Title 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15,15,99)" class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            </svg>
+        </button>
+        <div class="content">
+            <form action="/find_title" method="post" class="search_bar">
+                <input type="text" name="search" placeholder="Search titles ...">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <div class="movie-section">
+        <button type="button" class="collapsible">Genre 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15,15,99)" class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            </svg>
+        </button>
+        <div class="content">
+            <p>Check at least 1 checkbox</p>
+            <p style="color:red">{{ error }}</p>
+            <br>
+            <form action="/get_movies" method="post" class="genre-checkbox">
                 <input type="checkbox" id="genre1" name="genre" value="28">
-                <label for="genre2"> Action </label><br>
+                <label for="genre1"> Action </label><br>
                 <input type="checkbox" id="genre2" name="genre" value="12">
-                <label for="genre1"> Adventure </label><br>
+                <label for="genre2"> Adventure </label><br>
                 <input type="checkbox" id="genre3" name="genre" value="16">
-                <label for="genre1"> Animation </label><br>
+                <label for="genre3"> Animation </label><br>
                 <input type="checkbox" id="genre4" name="genre" value="35">
-                <label for="genre1"> Comedy </label><br>
+                <label for="genre4"> Comedy </label><br>
                 <input type="checkbox" id="genre5" name="genre" value="80">
-                <label for="genre1"> Crime </label><br>
+                <label for="genre5"> Crime </label><br>
                 <input type="checkbox" id="genre6" name="genre" value="99">
                 <label for="genre6"> Documentary </label><br>
                 <input type="checkbox" id="genre7" name="genre" value="18">
-                <label for="genre6"> Drama </label><br>
+                <label for="genre7"> Drama </label><br>
                 <input type="checkbox" id="genre8" name="genre" value="10751">
-                <label for="genre6"> Family </label><br>
+                <label for="genre8"> Family </label><br>
                 <input type="checkbox" id="genre9" name="genre" value="14">
-                <label for="genre6"> Fantasy </label><br>
+                <label for="genre9"> Fantasy </label><br>
                 <input type="checkbox" id="genre10" name="genre" value="36">
-                <label for="genre6"> History </label><br>
+                <label for="genre10"> History </label><br>
                 <input type="checkbox" id="genre11" name="genre" value="27">
-                <label for="genre3"> Horror </label><br>
+                <label for="genre11"> Horror </label><br>
                 <input type="checkbox" id="genre12" name="genre" value="10402">
-                <label for="genre4"> Music </label><br>
+                <label for="genre12"> Music </label><br>
                 <input type="checkbox" id="genre13" name="genre" value="9648">
-                <label for="genre4"> Mystery </label><br>
+                <label for="genre13"> Mystery </label><br>
                 <input type="checkbox" id="genre14" name="genre" value="10749">
-                <label for="genre4"> Romance </label><br>
+                <label for="genre14"> Romance </label><br>
                 <input type="checkbox" id="genre15" name="genre" value="878">
-                <label for="genre5"> Science Fiction </label><br>
+                <label for="genre15"> Science Fiction </label><br>
                 <input type="checkbox" id="genre16" name="genre" value="10770">
-                <label for="genre4"> TV Movie </label><br>
+                <label for="genre16"> TV Movie </label><br>
                 <input type="checkbox" id="genre17" name="genre" value="53">
-                <label for="genre4"> Thriller </label><br>
+                <label for="genre17"> Thriller </label><br>
                 <input type="checkbox" id="genre18" name="genre" value="10752">
-                <label for="genre4"> War </label><br>
+                <label for="genre18"> War </label><br>
                 <input type="checkbox" id="genre19" name="genre" value="37">
-                <label for="genre4"> Western </label><br>
+                <label for="genre19"> Western </label><br>
                 <br>
-                <input type="submit" value="Submit">
+                <input id="movie-submit" type="submit" value="Go">
             </form>
+        </div>
     </div>
     </a>
     <br>
     {% for item in movies.results %}
-        <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}" style="width:10%">
-        {{ item.original_title }}
-        <br>
-        {{ item.overview }}
-        <br>
-        <br>
+        <div class="row2">
+            <div class="column2">
+            {% if item.poster_path!=none %}
+            <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}">
+            {% else %}
+                <img src="static/blank_movie_poster.png">
+            {% endif %}
+            </div>
+            <div class="column3">
+                <p>{{ item.original_title }}</p>
+                <br>
+                <p class="synopsis">{{ item.overview }}</p>
+            </div>
+        </div>
     {% endfor %}
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            var content = this.nextElementSibling;  //div element whose class="content"
+            //if content is already shown, hide content when button is clicked
+            if (content.style.display === "block") {
+              content.style.display = "none";
+              this.parentElement.setAttribute("style","max-width:33.33%;");
+              this.lastElementChild.classList.add("hide");
+              this.firstElementChild.classList.remove("hide");
+            } 
+
+            //show content
+            else {
+              content.style.display = "block";
+              this.parentElement.setAttribute("style","max-width:100%;");
+              this.firstElementChild.classList.add("hide");
+              this.lastElementChild.classList.remove("hide");
+            }
+          });
+        }
+    </script>
 </body>
 
 </html>

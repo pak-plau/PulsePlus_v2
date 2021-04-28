@@ -69,7 +69,7 @@ def addRestaurant(info):
     db.commit()
     db.close()
 
-# alllows sqlite to return info as dictionaries
+# allows sqlite to return info as dictionaries
 def dict_factory(cursor, row):
     d = {}
     for idx, col in enumerate(cursor.description):
@@ -86,7 +86,7 @@ def getRestaurant(cuisine, zip):
     command = "SELECT * FROM restaurants WHERE cuisine=? AND zip=?;"
     r = c.execute(command, (cuisine, str(zip))).fetchone()
 
-    # if such restaurant doesn't exist, gets one from API and adds it to database
+    # if such restaurant doesn't exist, gets one from the API and adds it to the database
     if (not r):
         r = getRestaurantAPI(cuisine, zip)
         if (r == None):

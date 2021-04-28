@@ -34,3 +34,6 @@ victoriaG -- 2021-04-25 20:48
     - Add CSS to organize and style movie input fields (genre, search bar) and search results 
     - Add concise instructions above input fields to inform users and display error messages when they don't follow the 
     instructions.
+    
+reneeM -- 2021-04-28 10:19
+    - Add database and table for caching restaurant information from the Yelp Fusion API

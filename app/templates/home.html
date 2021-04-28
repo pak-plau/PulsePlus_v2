@@ -232,6 +232,13 @@
             color: black;
             font-size: 16px;
         }
+
+        .error {
+            color: red;
+            background-color: yellow;
+            font-weight: bold;
+            margin: auto;
+        }
     </style>
 
 </head>
@@ -268,6 +275,7 @@
     </div>
     <a id="movies">
     <h1> Browse Movies </h1>
+    <p class="error">{{ error_title }}</p>
     </a>
     <div class="movie-section">
         <button type="button" class="collapsible">Title 
@@ -279,13 +287,16 @@
             </svg>
         </button>
         <div class="content">
+            <p>Enter word(s) to get movie titles and synopses. </p>
+            <br>
             <form action="/find_title" method="post" class="search_bar">
-                <input type="text" name="search" placeholder="Search titles ...">
+                <input type="text" name="search" placeholder="Search titles, keywords ...">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
     </div>
     <br>
+    <p class="error">{{ error_genre }}</p>
     <div class="movie-section">
         <button type="button" class="collapsible">Genre 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
@@ -296,8 +307,7 @@
             </svg>
         </button>
         <div class="content">
-            <p>Check at least 1 checkbox</p>
-            <p style="color:red">{{ error }}</p>
+            <p>Check at least 1 of the checkboxes</p>
             <br>
             <form action="/get_movies" method="post" class="genre-checkbox">
                 <input type="checkbox" id="genre1" name="genre" value="28">

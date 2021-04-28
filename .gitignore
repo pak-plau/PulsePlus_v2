@@ -4,3 +4,4 @@ app/keys/studioghibli.txt
 app/keys/yelp.txt
 app/keys/edamam.txt
 app/keys/geocoder.txt
+*.db

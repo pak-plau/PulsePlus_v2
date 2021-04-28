@@ -16,7 +16,7 @@ def root():
 def get_movies():
     movies = request.form.getlist("genre")
     if not movies:
-        return render_template("home.html", error="Pick at least one genre!", movies="")
+        return render_template("home.html", error_genre="Pick at least one genre!", movies="")
     else:
         temp = tmdb_link
         for i in movies:
@@ -28,7 +28,10 @@ def get_movies():
 @app.route("/find_title", methods=["GET", "POST"])
 def find_title():
     title = request.form.get("search").replace(" ","+")
+    if not title:
+        return render_template("home.html", error_title="Enter at least one character", movies="")
     temp = title_link+title
+    print(temp)
     return render_template("home.html", movies=json.loads(urllib.request.urlopen(temp).read()))
 
 if(__name__ == "__main__"):

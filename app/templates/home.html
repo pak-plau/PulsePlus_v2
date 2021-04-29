@@ -7,265 +7,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        .row {
-            border-top: 2px solid gray;
-            border-bottom: 2px solid gray;
-            padding: 0px;
-            margin: 0px;
-        }
-
-        /* Create three equal columns that floats next to each other */
-        .column {
-            float: left;
-            width: 33.33%;
-            padding: 0px;
-        }
-
-        .column2 {
-            float: left;
-            width: 30%;
-            padding: 0px;
-        }
-
-        .column3 {
-            float: left;
-            width: 70%;
-            padding: 0px;
-        }
-
-        .column2 img {
-            width: 150px;
-            height: 200px;
-            margin-left: 45%;
-        }
-        .row2 {
-            border-top: 2px solid gray;
-            padding-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        /* Clear floats after the columns */
-        .row:after, .row2:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        .topnav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: white;
-            padding-top: 0;
-            z-index: 10;
-            height: 80px;
-        }
-
-        .topnav a {
-            float: left;
-            color: rgb(15, 15, 99);
-            text-align: center;
-            padding: 25px 25px;
-            text-decoration: none;
-            font-size: 17px;
-            display: block;
-        }
-
-        .topnav-right a:hover {
-            background-color: rgb(243, 240, 240);
-            color: black;
-            font-weight: bold;
-        }
-
-        .topnav-centered a {
-            position: absolute;
-            text-align: center;
-            justify-content: center;
-            right: 45%;
-            font-size: 2vw;
-        }
-
-        .topnav-centered a:hover {
-            color: rgb(15, 15, 99);
-            font-weight: normal;
-        }
-
-        .topnav-right {
-            float: right;
-            transform: translate(-10%,10%);
-        }
-
-        img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        #arrow {
-            position: relative;
-            animation: updown 3s infinite;
-            margin: auto;
-        }
-
-        .center-col {
-            font-size: 3vw;
-            text-align: center;
-            font-family: 'Courgette', cursive;
-        }
-
-        @media screen and (min-width: 500px) {
-            #arrow {
-                width: 25px;
-                height: 25px;
-            }
-
-            @keyframes updown {
-                from {
-                    top: 0px;
-                }
-
-                to {
-                    top: 10px;
-                }
-            }
-        }
-
-        @media screen and (min-width: 718px) {
-            #arrow {
-                width: 50px;
-                height: 50px;
-            }
-
-            @keyframes updown {
-                from {
-                    top: 0px;
-                }
-
-                to {
-                    top: 35px;
-                }
-            }
-        }
-
-        .search_bar input[type=text] {
-            border: 2px solid black;
-            border-right: none;
-            border-radius: 15px 0px 0px 15px; 
-            height: 40px;
-            outline: none;
-            background-color: white;
-            width: 70%;
-            padding-left: 10px;
-            font-size: 16px;
-            margin-left: 12.5%;
-        }
-
-        .search_bar button {  
-            position: absolute;   
-            border-radius: 0px 15px 15px 0px;  
-            background-image: linear-gradient(to right, #7474BF 0%, #348AC7 51%, #7474BF 100%); 
-            color: white;
-            border: none;
-            cursor: pointer;
-            height: 40px;
-            width: 5%;
-            border: 2px solid black;
-            border-left: none;
-        }
-
-        .collapsible {
-            background-color: white;
-            color: rgb(15, 15, 99);
-            font-weight: bold;
-            font-size: 25px;
-            padding: 5px;
-            cursor: pointer;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-        }
-
-        .active, .collapsible:hover {
-            background-color: white;
-        }
-
-        .content {
-            /* padding: top right bottom left */
-            padding: 20px 0px 20px 0px; 
-            display: none;
-            overflow: hidden;
-        }
-
-        .section {
-            border: 6px solid rgb(209, 128, 128);
-            background-color:rgb(243, 240, 240);
-            max-width: 33.33%;
-        }
-
-        .hide {
-            display: none;
-        }
-
-        p {
-            font-size: 18px;
-            color:darkblue;
-            margin: 0px 0px 0px 12.5%;
-        }
-
-        .genre-checkbox {
-            margin-left: 12.5%;
-        }
-
-        #movie-submit {
-            background-color: #7f5a83;
-            background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 36px;
-            cursor: pointer;
-        }
-
-        .synopsis {
-            color: black;
-            font-size: 16px;
-        }
-
-        .error {
-            color: red;
-            background-color: yellow;
-            font-weight: bold;
-            margin: auto;
-        }
-
-        .footer {
-            left: 0;
-            bottom: 0;
-            width:100%;
-            background-color: rgb(190, 126, 126);
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 2px;
-        }
-
-        .footer img {
-            width: 60px;
-            height: 60px;
-            margin: auto;
-        }
-    </style>
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for('static', filename='js/mainjs.js') }}"></script>
 </head>
 
 <body>
-    <div id="top_homepg" class="topnav">
+    <div class="topnav">
         <div class="topnav-centered">
             <a href="#top_homepg"><strong>Pulse+</strong></a>
         </div>
@@ -287,7 +34,7 @@
             <br>
             <br>
             <br>
-            <p class="center-col">A Relaxing Evening <br> to Remember</h1>
+            <p class="center-col">A Relaxing Evening <br> to Remember</p>
             <div id="arrow" class="center-col"><img src="static/arrow.png" /></div>
         </div>
         <div class="column">
@@ -298,12 +45,16 @@
     <h1> Browse Movies </h1>
     <p class="error">{{ error_title }}</p>
     <div class="section">
-        <button type="button" class="collapsible">Title 
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+        <button type="button" class="collapsible">Title
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)"
+                class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path
+                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
             </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15,15,99)" class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
-                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15,15,99)"
+                class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                <path
+                    d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
             </svg>
         </button>
         <div class="content">
@@ -318,12 +69,16 @@
     <br>
     <p class="error">{{ error_genre }}</p>
     <div class="section">
-        <button type="button" class="collapsible">Genre 
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+        <button type="button" class="collapsible">Genre
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)"
+                class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path
+                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
             </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15,15,99)" class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
-                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15,15,99)"
+                class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                <path
+                    d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
             </svg>
         </button>
         <div class="content">
@@ -369,109 +124,154 @@
                 <input type="checkbox" id="genre19" name="genre" value="37">
                 <label for="genre19"> Western </label><br>
                 <br>
-                <input id="movie-submit" type="submit" value="Go">
+                <input id="genre-submit" type="submit" value="Go">
             </form>
         </div>
     </div>
-    </a>
     <br>
     {% for item,link in movies %}
-        <div class="row2">
-            <div class="column2">
+    <div class="row2">
+        <div class="column2">
             {% if item.poster_path!=none %}
-                <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}">
+            <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}">
             {% else %}
-                <img src="static/blank_movie_poster.png">
+            <img src="static/blank_movie_poster.png">
             {% endif %}
-            </div>
-            <div class="column3">
-                {% if "release_date" in item %}
-                    <p>{{ item.title }} ({{ item.release_date[:4] }})</p>
-                {% else %}
-                    <p>{{ item.title }} ()</p>
-                {% endif %}
-                <br>
-                <p class="synopsis">{{ item.overview }}</p>
-                <br>
-                <p>Review:</p>
-                {% if link[0][1] == "No Review" %}
-                    <p>No Review</p>
-                {% else %}
-                    {% if "release_date" in item %}
-                        <p><a href="{{ link[0][1] }}">{{ item.title }} ({{ item.release_date[:4] }}) Review</a></p>
-                    {% else %}
-                        <p><a href="{{ link[0][1] }}">{{ item.title }} Review</a></p>
-                    {% endif %}
-                {% endif %}
-            </div>
         </div>
+        <div class="column3">
+            {% if "release_date" in item %}
+            <p>{{ item.title }} ({{ item.release_date[:4] }})</p>
+            {% else %}
+            <p>{{ item.title }} ()</p>
+            {% endif %}
+            <br>
+            <p class="description">{{ item.overview }}</p>
+            <br>
+            <p>Review:</p>
+            {% if link[0][1] == "No Review" %}
+            <p>No Review</p>
+            {% else %}
+            {% if "release_date" in item %}
+            <p><a href="{{ link[0][1] }}">{{ item.title }} ({{ item.release_date[:4] }}) Review</a></p>
+            {% else %}
+            <p><a href="{{ link[0][1] }}">{{ item.title }} Review</a></p>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
     {% endfor %}
 
-    {{ links }}
 
+    {{ links }}
+    <a id="food"></a>
     <h1> Browse Foods</h1>
-    <h3>Would you like to <button type="button" id="buy">Buy Food</button> or <button type="button" id="make">Make Food</button>?</h3>
-    <div class="section buyfood hide">
-        <button type="button" class="collapsible">Restaurant Name
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15,15,99)" class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
-                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
-            </svg>
-        </button>
-        <div class="content">
+    <h3>Would you like to <button type="button" id="buy">Buy Food</button> or <button type="button" id="mf">Make
+            Food</button>?</h3>
+    <div id="buyfood" class="hide">
+        <div class="food-header">Buy Food</div>
+        <div class="food-content">
             <p>Enter word(s) to get restaurant info </p>
             <br>
-            <form action="/find_title" method="post" class="search_bar">
-                <input type="text" name="search_restaurant" placeholder="Search restaurants, keywords ...">
-                <button type="submit"><i class="fa fa-search"></i></button>
+            <form action="/find_restaurant" method="post">
+                <input type="text" name="cuisine" class="restaurant_input"
+                    placeholder="Search restaurants, keywords ...">
+                <br>
+                <br>
+                <p>Enter zip code: must be a five digit number</p>
+                <br>
+                <input type="text" class="restaurant_input" name="zip" pattern="[0-9]{5}" required>
+                <br>
+                <br>
+                <input id="restaurant-submit" class="go" type="submit" value="Go">
             </form>
         </div>
     </div>
+
+    {% if restaurant_clicked=="yes" and error_restaurant|length == 0 %}
+    <div id="restaurant-info" class="">
+        <div class="food-header">Buy Food</div>
+        <div class="food-content">
+            {% if name|length > 0 %}
+            <p>Restaurant Name: <strong><span class="description">{{name}}</span></strong></p>
+            {% endif %}
+            {% if cuisine|length > 0 %}
+            <p>Cuisine: <span class="description">{{cuisine}}</span></p>
+            {% endif %}
+            {% if rating|length > 0 %}
+            <p>Rating: <span class="description">{{rating}}</span></p>
+            {% endif %}
+            {% if review|length > 0 %}
+            <p>Review: <span class="description">{{review}}</span></p>
+            {% if link|length > 0 %}
+            <p>View full review at <a href={{link}}>Yelp Website</a></p>
+            {% endif %}
+            {% endif %}
+            {% if phone|length > 0 %}
+            <p>Phone #: <span class="description">{{phone}}</span></p>
+            {% endif %}
+            {% if zipcode|length > 0 %}
+            <p>Zipcode: <span class="description">{{zipcode}}</span></p>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <p class="error">{{error_restaurant}}</p>
+    {% endif %}
+
+    <div id="makefood" class="hide">
+        <div class="food-header">Make Food</div>
+        <div class="food-content">
+            <p>Enter food name(s) to get recipes </p>
+            <br>
+            <form action="/find_food" method="post">
+                <input type="text" name="food-name" class="restaurant_input" placeholder="Search recipes, keywords ...">
+                <br>
+                <br>
+                <input id="recipe-submit" class="go" type="submit" value="Go">
+            </form>
+        </div>
+
+    </div>
+
     <br>
     <div class="footer">
         <p>All movie data and posters come from: TMDB</p>
-        <img src="static/tmdb_pic.jpg"/>
+        <img src="static/tmdb_pic.jpg" />
     </div>
-      
+
     <script>
         var coll = document.getElementsByClassName("collapsible");
         var i;
-        
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            var content = this.nextElementSibling;  //div element whose class="content"
-            //if content is already shown, hide content when button is clicked
-            if (content.style.display === "block") {
-              content.style.display = "none";
-              this.parentElement.setAttribute("style","max-width:33.33%;");
-              this.lastElementChild.classList.add("hide");
-              this.firstElementChild.classList.remove("hide");
-            } 
 
-            //show content
-            else {
-              content.style.display = "block";
-              this.parentElement.setAttribute("style","max-width:100%;");
-              this.firstElementChild.classList.add("hide");
-              this.lastElementChild.classList.remove("hide");
-            }
-          });
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                var content = this.nextElementSibling;  //div element whose class="content"
+                //if content is already shown, hide content when button is clicked
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                    this.parentElement.setAttribute("style", "max-width:33.33%;");
+                    this.lastElementChild.classList.add("hide");
+                    this.firstElementChild.classList.remove("hide");
+                }
+
+                //show content
+                else {
+                    content.style.display = "block";
+                    this.parentElement.setAttribute("style", "max-width:100%;");
+                    this.firstElementChild.classList.add("hide");
+                    this.lastElementChild.classList.remove("hide");
+                }
+            });
         }
 
-        document.getElementById("buy").addEventListener("click",function() {
-            var buyoptions = document.getElementsByClassName("buyfood")
-            for (i=0; i<buyoptions.length;i++) {
-                buyoptions[i].classList.remove("hide");
-            }
+        document.getElementById("buy").addEventListener("click", function () {
+            document.getElementById("buyfood").classList.remove("hide");
         });
 
-        document.getElementById("make").addEventListener("click",function() {
-            var buyoptions = document.getElementsByClassName("makefood")
-            for (i=0; i<buyoptions.length;i++) {
-                buyoptions[i].classList.remove("hide");
-            }
+        document.getElementById("mf").addEventListener("click", function () {
+            document.getElementById("buyfood").classList.add("hide");
+            document.getElementById("makefood").classList.remove("hide");
+            document.getElementById("restaurant-info").classList.add("hide");
         });
     </script>
 </body>

@@ -41,5 +41,12 @@ reneeM -- 2021-04-28 10:19
 ryanM -- 2021-04-28 17:49
     - Add database and table for caching restaurant information from the Edamam API
 
+<<<<<<< HEAD
 ryanM -- 2021-04-28 23:28
     - Update recipes.py to work properly
+=======
+pakL -- 2021-04-28 9:29
+    - Add NYTimes Movie reviews to movies
+    - Cache data for each genre
+    - Add to home.html so that it can iterate through both movies and their reviews
+>>>>>>> a5bab857f8835253da4610ec802fb5ed84d4cd81

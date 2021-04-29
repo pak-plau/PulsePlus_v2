@@ -137,3 +137,11 @@ if __name__ == "__main__":
 
     c = DataEntry()
     c.execute("DROP TABLE recipes")
+        addRecipe(r)
+    db.commit()
+    db.close()
+    return r
+
+createRecipesTable()
+recipe = getRecipeAPI("chicken")
+print(recipe)

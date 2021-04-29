@@ -1,7 +1,6 @@
 app/keys/tmdb.txt
 app/keys/nyt.txt
-app/keys/studioghibli.txt
 app/keys/yelp.txt
-app/keys/edamam.txt
-app/keys/geocoder.txt
-*.db
+app/keys/edamamid.txt
+app/keys/edamamkey.txt
+__pycache__

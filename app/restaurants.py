@@ -4,7 +4,8 @@ import random
 import sqlite3
 
 yelp_key = open("keys/yelp.txt", "r").read()
-DB_FILE = "data.db"
+DB_FILE = "pulseplus.db"
+testing = True
 
 # gets information on a restaurant from the Yelp API
 # zip MUST be a five digit number
@@ -29,7 +30,7 @@ def getRestaurantAPI(cuisine, zip):
         return None
 
     # gets Yelp id of a random restaurant
-    rand = random.randint(0, len(businesses))
+    rand = random.randint(0, len(businesses) - 1)
     id = response['businesses'][rand]['id']
 
     # gets detailed info about restaurant from Yelp API
@@ -55,7 +56,7 @@ def getRestaurantAPI(cuisine, zip):
 def createRestaurantTable():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("""CREATE TABLE IF NOT EXISTS restaurants (name TEXT PRIMARY KEY, cuisine TEXT, rating TEXT,
+    c.execute("""CREATE TABLE IF NOT EXISTS restaurants (name TEXT, cuisine TEXT, rating TEXT,
               review TEXT, phone INT, link TEXT, zip INT);""")
     db.commit()
     db.close()
@@ -85,17 +86,17 @@ def getRestaurant(cuisine, zip):
     # gets a restaurant matching the filters from the database
     command = "SELECT * FROM restaurants WHERE cuisine=? AND zip=?;"
     r = c.execute(command, (cuisine, str(zip))).fetchone()
+    db.commit()
+    db.close()
 
     # if such restaurant doesn't exist, gets one from the API and adds it to the database
-    if (not r):
+    if (not r or not testing):
         r = getRestaurantAPI(cuisine, zip)
         if (r == None):
             return None
         addRestaurant(r)
-    db.commit()
-    db.close()
     return r;
 
-#createRestaurantTable();
-#restaurant = getRestaurantAPI("pizza", "11214");
-#print(restaurant)
+createRestaurantTable();
+restaurant = getRestaurant("pizza", "11214");
+print(restaurant)

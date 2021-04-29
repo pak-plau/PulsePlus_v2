@@ -57,18 +57,23 @@
         }
 
         .topnav {
-            position: relative;
+            position: fixed;
+            top: 0;
+            width: 100%;
             background-color: white;
-            padding-right: 2%;
+            padding-top: 0;
+            z-index: 10;
+            height: 80px;
         }
 
         .topnav a {
             float: left;
             color: rgb(15, 15, 99);
             text-align: center;
-            padding: 25px 16px;
+            padding: 25px 25px;
             text-decoration: none;
             font-size: 17px;
+            display: block;
         }
 
         .topnav-right a:hover {
@@ -78,12 +83,10 @@
         }
 
         .topnav-centered a {
-            margin-top: 35px;
-            float: none;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            text-align: center;
+            justify-content: center;
+            right: 45%;
             font-size: 2vw;
         }
 
@@ -94,6 +97,7 @@
 
         .topnav-right {
             float: right;
+            transform: translate(-10%,10%);
         }
 
         img {
@@ -198,7 +202,7 @@
             overflow: hidden;
         }
 
-        .movie-section {
+        .section {
             border: 6px solid rgb(209, 128, 128);
             background-color:rgb(243, 240, 240);
             max-width: 33.33%;
@@ -239,6 +243,23 @@
             font-weight: bold;
             margin: auto;
         }
+
+        .footer {
+            left: 0;
+            bottom: 0;
+            width:100%;
+            background-color: rgb(190, 126, 126);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 2px;
+        }
+
+        .footer img {
+            width: 60px;
+            height: 60px;
+            margin: auto;
+        }
     </style>
 
 </head>
@@ -273,11 +294,10 @@
             <img src="static/dinner.jpg" />
         </div>
     </div>
-    <a id="movies">
+    <a id="movies"></a>
     <h1> Browse Movies </h1>
     <p class="error">{{ error_title }}</p>
-    </a>
-    <div class="movie-section">
+    <div class="section">
         <button type="button" class="collapsible">Title 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                 <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -297,7 +317,7 @@
     </div>
     <br>
     <p class="error">{{ error_genre }}</p>
-    <div class="movie-section">
+    <div class="section">
         <button type="button" class="collapsible">Genre 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
             <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -389,6 +409,32 @@
 
     {{ links }}
 
+    <h1> Browse Foods</h1>
+    <h3>Would you like to <button type="button" id="buy">Buy Food</button> or <button type="button" id="make">Make Food</button>?</h3>
+    <div class="section buyfood hide">
+        <button type="button" class="collapsible">Restaurant Name
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15, 15, 99)" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(15,15,99)" class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            </svg>
+        </button>
+        <div class="content">
+            <p>Enter word(s) to get restaurant info </p>
+            <br>
+            <form action="/find_title" method="post" class="search_bar">
+                <input type="text" name="search_restaurant" placeholder="Search restaurants, keywords ...">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <div class="footer">
+        <p>All movie data and posters come from: TMDB</p>
+        <img src="static/tmdb_pic.jpg"/>
+    </div>
+      
     <script>
         var coll = document.getElementsByClassName("collapsible");
         var i;
@@ -413,6 +459,20 @@
             }
           });
         }
+
+        document.getElementById("buy").addEventListener("click",function() {
+            var buyoptions = document.getElementsByClassName("buyfood")
+            for (i=0; i<buyoptions.length;i++) {
+                buyoptions[i].classList.remove("hide");
+            }
+        });
+
+        document.getElementById("make").addEventListener("click",function() {
+            var buyoptions = document.getElementsByClassName("makefood")
+            for (i=0; i<buyoptions.length;i++) {
+                buyoptions[i].classList.remove("hide");
+            }
+        });
     </script>
 </body>
 

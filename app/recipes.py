@@ -16,15 +16,12 @@ def getRecipeAPI(query):
     # gets recipes based on filter
     response = requests.request("GET", search)
 
-    # generates a random number based on number of recipe results
-    rand = random.randint(0, response['count'])
-
     # returns None if there are no recipes based on the query
     if (rand < 1):
         return None
 
     # gets a random recipe from results
-    recipe = response['hits'][rand]['recipe']
+    recipe = response['hits'][random.randint(0,20)]['recipe']
 
     # stores recipe's identifier, title, url, and image
     uri = recipe['uri']

@@ -9,7 +9,7 @@ testing = True
 
 # gets information on a restaurant from the Yelp API
 # zip MUST be a five digit number
-def getRestaurantAPI(cuisine, zip):
+def getRestaurantAPI(cuisine,zipcode):
     # contains api key for authorizing request
     headers = {
         'Authorization': ('Bearer ' + yelp_key).replace('\n', '')
@@ -18,7 +18,7 @@ def getRestaurantAPI(cuisine, zip):
     # contains filters for choosing restaurant
     url_params = {
         'term': cuisine.replace(' ', '+'),
-        'location': zip.replace(' ', '+'),
+        'location': zipcode.replace(' ', '+'),
     }
 
     # gets list of restaurants from Yelp Fusion API based on filters
@@ -43,11 +43,11 @@ def getRestaurantAPI(cuisine, zip):
     info = {
         'name': restaurant['name'],
         'cuisine': cuisine,
-        'rating': restaurant['rating'],
+        'rating': str(restaurant['rating']),
         'review': review['reviews'][0]['text'],
         'phone': restaurant['phone'],
         "link": restaurant['url'],
-        "zip": zip
+        "zip": str(zipcode)
     }
 
     return info

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import urllib, json, nyt
+import urllib, json, nyt, restaurants
 
 f = open("keys/tmdb.txt", "r")
 key = f.read()

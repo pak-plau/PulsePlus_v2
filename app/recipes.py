@@ -14,7 +14,7 @@ def getRecipeAPI(query):
     search = "https://api.edamam.com/search?q=" + query + "&app_id=$" + edamam_id + "&app_key=$" + edamam_key
 
     # gets recipes based on filter
-    response = requests.get(search).json()
+    response = requests.request("GET", search)
 
     # generates a random number based on number of recipe results
     rand = random.randint(0, response['count'])
@@ -26,16 +26,17 @@ def getRecipeAPI(query):
     # gets a random recipe from results
     recipe = response['hits'][rand]['recipe']
 
-    # stores recipe identifier, title, and image
+    # stores recipe's identifier, title, url, and image
     uri = recipe['uri']
     title = recipe['label']
+    url = recipe['url']
     image = recipe['image']
 
     # puts together necessary info from requests into a dictionary
     info = {
         'recipe identifier': uri,
-        'search query': query,
         'recipe title': title,
+        'recipe url': url,
         'recipe image': image
     }
 
@@ -45,7 +46,7 @@ def getRecipeAPI(query):
 def createRecipesTable():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("""CREATE TABLE IF NOT EXISTS recipes (identifier TEXT PRIMARY KEY, query TEXT, title TEXT , image TEXT);""")
+    c.execute("""CREATE TABLE IF NOT EXISTS recipes (identifier TEXT PRIMARY KEY, query TEXT, title TEXT, url TEXT, image TEXT);""")
     db.commit()
     db.close()
 
@@ -53,8 +54,8 @@ def createRecipesTable():
 def addRecipe(info):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "INSERT INTO recipes VALUES (?, ?, ?, ?);"
-    c.execute(command, (info['uri'], info['query'], info['title'], info['image']))
+    command = "INSERT INTO recipes VALUES (?, ?, ?, ?, ?);"
+    c.execute(command, (info['uri'], info['query'], info['title'], info['url'], info['image']))
     db.commit()
     db.close()
 

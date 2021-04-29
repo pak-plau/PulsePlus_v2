@@ -97,6 +97,6 @@ def getRestaurant(cuisine, zip):
         addRestaurant(r)
     return r;
 
-createRestaurantTable();
-restaurant = getRestaurant("pizza", "11214");
-print(restaurant)
+#createRestaurantTable();
+#restaurant = getRestaurant("pizza", "11214");
+#print(restaurant)

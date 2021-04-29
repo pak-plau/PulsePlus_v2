@@ -16,26 +16,56 @@
     padding: 0px;
 }
 
+.column2 {
+    float: left;
+    width: 30%;
+    padding: 0px;
+}
+
+.column3 {
+    float: left;
+    width: 70%;
+    padding: 0px;
+}
+
+.column2 img {
+    width: 150px;
+    height: 200px;
+    margin-left: 45%;
+}
+
+.row2 {
+    border-top: 2px solid gray;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* Clear floats after the columns */
-.row:after {
+.row:after,
+.row2:after {
     content: "";
     display: table;
     clear: both;
 }
 
 .topnav {
-    position: relative;
+    position: fixed;
+    top: 0;
+    width: 100%;
     background-color: white;
-    padding-right: 2%
+    padding-top: 0;
+    z-index: 10;
+    height: 80px;
 }
 
 .topnav a {
     float: left;
     color: rgb(15, 15, 99);
     text-align: center;
-    padding: 25px 16px;
+    padding: 25px 25px;
     text-decoration: none;
     font-size: 17px;
+    display: block;
 }
 
 .topnav-right a:hover {
@@ -45,12 +75,10 @@
 }
 
 .topnav-centered a {
-    margin-top: 35px;
-    float: none;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: center;
+    justify-content: center;
+    right: 45%;
     font-size: 2vw;
 }
 
@@ -61,6 +89,7 @@
 
 .topnav-right {
     float: right;
+    transform: translate(-10%, 10%);
 }
 
 img {
@@ -70,9 +99,9 @@ img {
 }
 
 #arrow {
-        position: relative;
-        animation: updown 3s infinite;
-        margin: auto;
+    position: relative;
+    animation: updown 3s infinite;
+    margin: auto;
 }
 
 .center-col {
@@ -86,9 +115,15 @@ img {
         width: 25px;
         height: 25px;
     }
+
     @keyframes updown {
-        from {top: 0px;}
-        to {top: 10px;}
+        from {
+            top: 0px;
+        }
+
+        to {
+            top: 10px;
+        }
     }
 }
 
@@ -97,8 +132,164 @@ img {
         width: 50px;
         height: 50px;
     }
+
     @keyframes updown {
-        from {top: 0px;}
-        to {top: 35px;}
+        from {
+            top: 0px;
+        }
+
+        to {
+            top: 35px;
+        }
     }
+}
+
+.search_bar input[type=text] {
+    border: 2px solid black;
+    border-right: none;
+    border-radius: 15px 0px 0px 15px;
+    height: 40px;
+    outline: none;
+    background-color: white;
+    width: 70%;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-left: 12.5%;
+}
+
+.restaurant_input {
+    border: 2px solid black;
+    border-radius: 15px;
+    height: 40px;
+    width: 33.33%;
+    outline: none;
+    background-color: white;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-left: 12.5%;
+}
+
+.search_bar button {
+    position: absolute;
+    border-radius: 0px 15px 15px 0px;
+    background-image: linear-gradient(to right, #7474BF 0%, #348AC7 51%, #7474BF 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 5%;
+    border: 2px solid black;
+    border-left: none;
+}
+
+.collapsible {
+    background-color: white;
+    color: rgb(15, 15, 99);
+    font-weight: bold;
+    font-size: 25px;
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+}
+
+.food-header {
+    background-color: white;
+    color: rgb(15, 15, 99);
+    font-weight: bold;
+    font-size: 25px;
+    padding: 5px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+}
+
+.active,
+.collapsible:hover {
+    background-color: white;
+}
+
+.content {
+    /* padding: top right bottom left */
+    padding: 20px 0px 20px 0px;
+    display: none;
+    overflow: hidden;
+}
+
+.food-content {
+    /* padding: top right bottom left */
+    padding: 20px 0px 20px 0px;
+    overflow: hidden;
+}
+
+.section {
+    border: 6px solid rgb(209, 128, 128);
+    background-color: rgb(243, 240, 240);
+    max-width: 33.33%;
+}
+
+#buyfood,
+#restaurant-info,
+#makefood {
+    border: 6px solid rgb(209, 128, 128);
+    background-color: rgb(243, 240, 240);
+}
+
+.hide {
+    display: none;
+}
+
+p {
+    font-size: 18px;
+    color: darkblue;
+    margin: 0px 0px 0px 12.5%;
+}
+
+.genre-checkbox,
+.go {
+    margin-left: 12.5%;
+}
+
+#genre-submit,
+#restaurant-submit,
+#recipe-submit {
+    background-color: #7f5a83;
+    background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.description {
+    color: black;
+    font-size: 16px;
+}
+
+.error {
+    color: red;
+    background-color: yellow;
+    font-weight: bold;
+    margin: auto;
+}
+
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(190, 126, 126);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 2px;
+}
+
+.footer img {
+    width: 60px;
+    height: 60px;
+    margin: auto;
 }

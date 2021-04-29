@@ -3,6 +3,7 @@ import urllib, json, nyt
 
 f = open("keys/tmdb.txt", "r")
 key = f.read()
+restaurant_clicked=""
 tmdb_link = "https://api.themoviedb.org/3/discover/movie?api_key=" + key + "&with_genres="
 title_link = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&include_adult=true&query="
 f.close()
@@ -44,6 +45,35 @@ def find_food():
 
     return render_template("home.html", recipe=recipe, last_search=search, focus='food')
 
+@app.route("/find_restaurant", methods=["GET", "POST"])
+def find_restaurant():
+    cuisine = request.form.get("cuisine")
+    zipcode = request.form.get("zip")
+    info=restaurants.getRestaurantAPI(cuisine,zipcode)
+    restaurant_clicked="yes"
+    if (info==None):
+        return render_template("home.html",
+                               error_restaurant="No Restaurants Found",
+                               name="",
+                               cuisine="",
+                               rating="",
+                               review="",
+                               phone="",
+                               link = "",
+                               zipcode = "",
+                               restaurant_clicked=restaurant_clicked)
+    else: 
+        return render_template("home.html",
+                               error_restaurant="",
+                               name=info["name"],
+                               cuisine=info["cuisine"],
+                               rating=info["rating"],
+                               review=info["review"],
+                               phone=info["phone"],
+                               link = info["link"],
+                               zipcode = info["zip"],
+                               restaurant_clicked=restaurant_clicked)
+    
 if(__name__ == "__main__"):
     app.debug = True
     nyt.nyt_init()

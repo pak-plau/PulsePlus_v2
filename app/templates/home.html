@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PulsePlus v2 Home</title>
+    <title>Pulse+</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -246,7 +246,7 @@
 <body>
     <div id="top_homepg" class="topnav">
         <div class="topnav-centered">
-            <a href="#top_homepg"><strong>PulsePlus</strong> v2</a>
+            <a href="#top_homepg"><strong>Pulse+</strong></a>
         </div>
         <div class="topnav-right">
             <a href="#movies">Movies</a>
@@ -355,22 +355,39 @@
     </div>
     </a>
     <br>
-    {% for item in movies.results %}
+    {% for item,link in movies %}
         <div class="row2">
             <div class="column2">
             {% if item.poster_path!=none %}
-            <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}">
+                <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}">
             {% else %}
                 <img src="static/blank_movie_poster.png">
             {% endif %}
             </div>
             <div class="column3">
-                <p>{{ item.title }}</p>
+                {% if "release_date" in item %}
+                    <p>{{ item.title }} ({{ item.release_date[:4] }})</p>
+                {% else %}
+                    <p>{{ item.title }} ()</p>
+                {% endif %}
                 <br>
                 <p class="synopsis">{{ item.overview }}</p>
+                <br>
+                <p>Review:</p>
+                {% if link[0][1] == "No Review" %}
+                    <p>No Review</p>
+                {% else %}
+                    {% if "release_date" in item %}
+                        <p><a href="{{ link[0][1] }}">{{ item.title }} ({{ item.release_date[:4] }}) Review</a></p>
+                    {% else %}
+                        <p><a href="{{ link[0][1] }}">{{ item.title }} Review</a></p>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
     {% endfor %}
+
+    {{ links }}
 
     <script>
         var coll = document.getElementsByClassName("collapsible");

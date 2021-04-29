@@ -83,6 +83,6 @@ def getRecipe(query):
     db.close()
     return r
 
-# createRecipesTable()
-# recipe = getRecipeAPI("chicken")
-# print(recipe)
+createRecipesTable()
+recipe = getRecipeAPI("chicken")
+print(recipe)

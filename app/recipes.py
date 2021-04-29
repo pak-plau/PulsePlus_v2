@@ -142,6 +142,6 @@ if __name__ == "__main__":
     db.close()
     return r
 
-createRecipesTable()
-recipe = getRecipeAPI("chicken")
-print(recipe)
+# createRecipesTable()
+# recipe = getRecipeAPI("chicken")
+# print(recipe)

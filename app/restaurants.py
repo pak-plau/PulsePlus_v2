@@ -88,7 +88,7 @@ def getRestaurant(cuisine, zip):
     r = c.execute(command, (cuisine, str(zip))).fetchone()
     db.commit()
     db.close()
-
+    
     # if such restaurant doesn't exist, gets one from the API and adds it to the database
     if (not r or not testing):
         r = getRestaurantAPI(cuisine, zip)

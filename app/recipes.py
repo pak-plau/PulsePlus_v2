@@ -6,7 +6,7 @@ import sqlite3
 edamam_id = open("keys/edamamid.txt", "r").read()
 edamam_key = open("keys/edamamkey.txt", "r").read()
 
-DB_FILE = "data.db"
+DB_FILE = "pulseplus.db"
 
 class DataEntry:
     def __init__(self, file=DB_FILE):
@@ -46,6 +46,7 @@ def getRecipes(query):
 
     # gets recipes based on filter
     response = requests.request("GET", search)
+    
     if response.status_code != 200:
         return None
 
@@ -103,16 +104,19 @@ def getRecipeFromCache(query):
 def getRecipe(query):
 
     from_cache = getRecipeFromCache(query)
-    # print("from cache", from_cache[:3])
+    print("from cache", from_cache[:3])
 
     if len(from_cache) != 0:
         # print("Using data from the cache")
-        return random.choice(from_cache) 
+        choice = random.choice(from_cache)
+        recipe = {'url': choice[0], 'title': choice[1], 'image': choice[2]}
+        return recipe 
 
     else:
         # print("Asking the api")
         recipes = getRecipes(query)
-        if len(recipes) == 0:
+
+        if (not recipes):
             return None
 
         addRecipes(recipes)
@@ -135,13 +139,13 @@ if __name__ == "__main__":
         print(recipe)
         print('-'*10)
 
-    c = DataEntry()
-    c.execute("DROP TABLE recipes")
-        addRecipe(r)
-    db.commit()
-    db.close()
-    return r
+    # c = DataEntry()
+    # c.execute("DROP TABLE recipes")
+    # addRecipe(r)
+    # db.commit()
+    # db.close()
+    # return r
 
-# createRecipesTable()
+createRecipesTable()
 # recipe = getRecipeAPI("chicken")
 # print(recipe)

@@ -229,8 +229,24 @@
                 <input id="recipe-submit" class="go" type="submit" value="Go">
             </form>
         </div>
-
     </div>
+
+    {% if recipe and error_recipe|length == 0 %}
+    <div class="row2">
+        <div class="food-header">Make Food</div>
+        <div class="column2">
+            <img src="{{ recipe['image'] }}">
+        </div>
+        <div class="column2">
+            <div class="food-content">
+                <p>Food Name: <strong><span class="description">{{recipe['title']}}</span></strong></p>
+                <p>View full recipe <a href={{r_img}}>here</a></p>           
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p class="error">{{error_recipe}}</p>
+    {% endif %}
 
     <br>
     <div class="footer">

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import urllib, json, nyt, restaurants
+import urllib, json, nyt, restaurants, recipes
 
 f = open("keys/tmdb.txt", "r")
 key = f.read()
@@ -41,9 +41,21 @@ def find_food():
     if not search:
         return render_template("home.html", last_search='', focus='food')
     
-    recipe = getRecipe(search)
-
-    return render_template("home.html", recipe=recipe, last_search=search, focus='food')
+    recipe = recipes.getRecipe(search)
+    print(type(recipe))
+    if (not recipe):
+        return render_template("home.html",
+                            recipe=recipe,
+                            r_img="",
+                            last_search=search, 
+                            focus='food', 
+                            error_recipe="No Recipes Found")
+    return render_template("home.html", 
+                            recipe=recipe,
+                            r_img=recipe['image'], 
+                            last_search=search, 
+                            focus='food', 
+                            error_recipe="")
 
 @app.route("/find_restaurant", methods=["GET", "POST"])
 def find_restaurant():

@@ -19,5 +19,6 @@ Ever had a hard time deciding what movie to watch during movie night? Well say n
 `git clone https://github.com/pak-plau/PulsePlus_v2.git`
 2. Go to the folder containing the app: `cd PulsePlus_v2`
 3. Install the required modules: `pip install -r requirements.txt`
-4. Go into the app folder: `cd app`
-5. Run the python file: `python __init__.py`
+4. Make and store the required API keys according to the readme in the keys folder.
+5. Go into the app folder: `cd app`
+7. Run the python file: `python __init__.py`

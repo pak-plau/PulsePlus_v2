@@ -8,81 +8,132 @@ edamam_key = open("keys/edamamkey.txt", "r").read()
 
 DB_FILE = "data.db"
 
-def getRecipeAPI(query):
+class DataEntry:
+    def __init__(self, file=DB_FILE):
+        self.db = sqlite3.connect(file, check_same_thread=False)
+        self.cursor = self.db.cursor()
+
+    def execute(self, command, bindings=tuple()):
+        return self.cursor.execute(command, bindings)
+
+    def close(self):
+        self.db.commit()
+        self.cursor.close()
+        self.db.close()
+
+    def __del__(self):
+        self.close()
+
+# creates search query with query, api id and key
+def buildQuery(base, **kwargs):
+    query = base
+    next = "?"
+    for key, value in kwargs.items():
+        query += f"{next}{key}={value}"
+        next = "&"
+
+    return query
+
+def getRecipes(query):
 
     # stores adds query, API id, and API key into search url
-    search = "https://api.edamam.com/search?q=" + query + "&app_id=$" + edamam_id + "&app_key=$" + edamam_key
+    search = buildQuery(
+        "https://api.edamam.com/search", 
+        q=query,
+        app_id=edamam_id,
+        app_key=edamam_key
+    )
 
     # gets recipes based on filter
     response = requests.request("GET", search)
-
-    # returns None if there are no recipes based on the query
-    if (rand < 1):
+    if response.status_code != 200:
         return None
 
-    # gets a random recipe from results
-    recipe = response['hits'][random.randint(0,20)]['recipe']
+    response = response.json()
 
-    # stores recipe's identifier, title, url, and image
-    uri = recipe['uri']
-    title = recipe['label']
-    url = recipe['url']
-    image = recipe['image']
+    hits = response['hits']
 
-    # puts together necessary info from requests into a dictionary
-    info = {
-        'recipe identifier': uri,
-        'recipe title': title,
-        'recipe url': url,
-        'recipe image': image
-    }
+    recipes = (hit['recipe'] for hit in hits)
 
-    return info
+    return [
+        {'url':r['url'], 'title':r['label'], 'image':r['image']} 
+        for r 
+        in recipes
+    ]
 
 # creates a table for caching recipe info
 def createRecipesTable():
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    c.execute("""CREATE TABLE IF NOT EXISTS recipes (identifier TEXT PRIMARY KEY, query TEXT, title TEXT, url TEXT, image TEXT);""")
-    db.commit()
-    db.close()
+    c = DataEntry()
+
+    c.execute("""
+        CREATE TABLE IF NOT EXISTS recipes (
+            url TEXT PRIMARY KEY, 
+            title TEXT, 
+            image TEXT
+        );
+    """)
+
+# adds all recipes for a given query into the database 
+def addRecipes(hits):
+    for hit in hits:
+        addRecipe(hit)
 
 # adds info on a recipe to the database
-def addRecipe(info):
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    command = "INSERT INTO recipes VALUES (?, ?, ?, ?, ?);"
-    c.execute(command, (info['uri'], info['query'], info['title'], info['url'], info['image']))
-    db.commit()
-    db.close()
+def addRecipe(recipe):
+    c = DataEntry()
+    
+    command = "INSERT INTO recipes (url, title, image) VALUES (?, ?, ?);"
+    c.execute(command, (
+        recipe['url'], 
+        recipe['title'],
+        recipe['image']
+    ))
 
-# allows sqlite to return info as dictionaries
-def dict_factory(cursor, row):
-    d = {}
-    for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-    return d
+# gets a stored recipe from the database
+def getRecipeFromCache(query):
+    c = DataEntry()
 
-# returns info on a recipe from either the API or the database
+    command = "SELECT * FROM recipes WHERE title LIKE ?"
+    bindings = (f"%{query}%", )
+
+    data = c.execute(command, bindings)
+    return data.fetchall()
+
+# gets a random recipe from search query
 def getRecipe(query):
-    db = sqlite3.connect(DB_FILE)
-    db.row_factory = dict_factory
-    c = db.cursor()
 
-    # gets a restaurant matching the query from the database
-    command = "SELECT * FROM recipes WHERE query=?;"
-    r = c.execute(command, (query)).fetchone()
+    from_cache = getRecipeFromCache(query)
+    # print("from cache", from_cache[:3])
 
-    # if such a recipe doesn't exist, gets one from the API and adds it to the database
-    if (not r):
-        r = getRecipeAPI(query)
-        if (r == None):
+    if len(from_cache) != 0:
+        # print("Using data from the cache")
+        return random.choice(from_cache) 
+
+    else:
+        # print("Asking the api")
+        recipes = getRecipes(query)
+        if len(recipes) == 0:
             return None
-        addRecipe(r)
-    db.commit()
-    db.close()
-    return r
 
-# createRecipesTable()
-# recipe = getRecipeAPI("chicken")
-# print(recipe)
+        addRecipes(recipes)
+        return random.choice(recipes)
+
+if __name__ == "__main__":
+    createRecipesTable()
+
+    searches = [
+        "chicken",
+        "breast",
+        "soup",
+    ] * 2
+
+    for search in searches:
+        recipe = getRecipe(search)
+
+        print('-'*10)
+        print(f"{search} has recipe: ")
+        print(recipe)
+        print('-'*10)
+
+    c = DataEntry()
+    c.execute("DROP TABLE recipes")

@@ -34,6 +34,16 @@ def find_title():
     data = json.loads(urllib.request.urlopen(temp.replace(" ", "%20")).read())
     return render_template("home.html", movies=zip(data["results"], nyt.get_links(data)))
 
+@app.route("/find_food", methods=["GET", "POST"])
+def find_food():
+    search = request.form.get("food-name")
+    if not search:
+        return render_template("home.html", last_search='', focus='food')
+    
+    recipe = getRecipe(search)
+
+    return render_template("home.html", recipe=recipe, last_search=search, focus='food')
+
 if(__name__ == "__main__"):
     app.debug = True
     nyt.nyt_init()

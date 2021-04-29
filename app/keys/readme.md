@@ -6,7 +6,7 @@ Once you have the key, store them in text files in this (keys) folder, using the
 Please make sure that the files contain only ONE line with your key, without any extra new lines afterwards.   
 
 * Edamam: https://developer.edamam.com
-    - File Name: `edamamid.txt` and `edamamkey.txt` 
+    - File Names: `edamamid.txt` and `edamamkey.txt` 
 * NYT: https://developer.nytimes.com/apis
     - File Name: `nyt.txt`
 * TMDB: https://developers.themoviedb.org/3/getting-started/introduction

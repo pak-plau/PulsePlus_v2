@@ -48,3 +48,9 @@ pakL -- 2021-04-28 9:29
 
 ryanM -- 2021-04-28 23:53
     - Add recipe search function to site
+    
+victoriaG -- 2021-04-29 04:43
+    - Add food input fields (search bar for restaurant names/keywords, zip code, and recipe keywords)
+    and conditionals to check that user is following instructions above each input field
+    - Connect backend restaurants.py to frontend by adding find_restaurant() function in __init__.py
+    - Add Javascript to allow users to toggle between searching restaurants and recipes by clicking buttons.

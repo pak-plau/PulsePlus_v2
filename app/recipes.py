@@ -104,7 +104,7 @@ def getRecipeFromCache(query):
 def getRecipe(query):
 
     from_cache = getRecipeFromCache(query)
-    print("from cache", from_cache[:3])
+    # print("from cache", from_cache[:3])
 
     if len(from_cache) != 0:
         # print("Using data from the cache")

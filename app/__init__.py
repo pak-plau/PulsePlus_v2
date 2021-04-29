@@ -42,17 +42,17 @@ def find_food():
         return render_template("home.html", last_search='', focus='food')
     
     recipe = recipes.getRecipe(search)
-    print(type(recipe))
+
     if (not recipe):
         return render_template("home.html",
                             recipe=recipe,
-                            r_img="",
+                            r_link="",
                             last_search=search, 
                             focus='food', 
                             error_recipe="No Recipes Found")
     return render_template("home.html", 
                             recipe=recipe,
-                            r_img=recipe['image'], 
+                            r_link=recipe['url'], 
                             last_search=search, 
                             focus='food', 
                             error_recipe="")

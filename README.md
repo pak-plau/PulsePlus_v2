@@ -15,5 +15,9 @@
 Ever had a hard time deciding what movie to watch during movie night? Well say no more, Pulse+ will show you movies given genres or a query, and also show nearby restaurants. If you feel like cooking, you can even search for recipes!
 
 ## Launch Codes:
-1. Clone this repo
+1. Clone this repo:
 `git clone https://github.com/pak-plau/PulsePlus_v2.git`
+2. Go to the folder containing the app: `cd PulsePlus_v2`
+3. Install the required modules: `pip install -r requirements.txt`
+4. Go into the app folder: `cd app`
+5. Run the python file: `python __init__.py`

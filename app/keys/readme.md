@@ -6,8 +6,10 @@ Once you have the key, store them in text files in this (keys) folder, using the
 Please make sure that the files contain only ONE line with your key, without any extra new lines afterwards.   
 
 * Edamam: https://developer.edamam.com
+    - When making a new application, please choose the Recipe Search API.
     - File Names: `edamamid.txt` and `edamamkey.txt` 
 * NYT: https://developer.nytimes.com/apis
+    - When making a new application, make sure to enable the Movies Review API.
     - File Name: `nyt.txt`
 * TMDB: https://developers.themoviedb.org/3/getting-started/introduction
     - File Name: `tmdb.txt`
